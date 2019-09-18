@@ -23,7 +23,6 @@ import BookingsService from '../services/BookingsService.js';
 
 export default {
     name: "bookings-form",
-    // props: "bookings",
     data(){
         return {
             guestName: "",
@@ -42,13 +41,12 @@ export default {
             };
 
             BookingService.postBooking(payload)
-            .then(booking => {
-                eventBus.$emit('booking-added', booking);
+            .then(booking => eventBus.$emit('booking-added', booking))
                 
-            })
+            }
         }
     }
-}
+
 </script>
 
 <style lang="css" scoped>

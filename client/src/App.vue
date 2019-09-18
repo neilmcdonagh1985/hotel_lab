@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <h1>Bookings Form</h1> -->
+    <h1>Bookings Form</h1>
     <bookings-form></bookings-form>
     <!-- <bookings-grid :bookings="bookings"></bookings-grid> -->
   </div>
@@ -22,14 +22,13 @@ export default {
   },
   components: {
     'bookings-form': BookingsForm,
-    // 'bookings-grid': BookingsGrid
   },
   mounted(){
   this.fetchData();
 
-  eventBus.$on('booking-added', booking => this.bookings.push(booking));
+  eventBus.$on('booking-added', (booking) => {this.bookings.push(booking)})
+  },
 
-},
 methods: {
   fetchData(){
     BookingsService.getBookings()
