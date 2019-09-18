@@ -10,10 +10,11 @@
         <input type="text" id="email" v-model="email"/>
         </div>
         <div>
-        <label for="checkedInStatus">Checked-In</label>
-        <input type="text" id="checked-in-status" v-model="checkedInStatus"/>
+        <label for="checkedInStatus">Checked In</label>
+        <input type="checkbox" id="checkedInStatus" v-model="checkedInStatus">
+        <input type="submit" value="Save" id="save"/>
+
         </div>
-        <input type="submit" value="Add Booking">
     </form>
 </template>
 
@@ -27,8 +28,10 @@ export default {
         return {
             guestName: "",
             email: "",
-            checkedInStatus: "null"
+            checkedInStatus: false
+            
         }
+        // $("checkedInStatus").prop( "checked", true);
     },
     methods: {
         handleSubmit(event){
@@ -40,7 +43,7 @@ export default {
                 checkedInStatus: this.checkedInStatus
             };
 
-            BookingService.postBooking(payload)
+            BookingsService.postBooking(payload)
             .then(booking => eventBus.$emit('booking-added', booking))
                 
             }
